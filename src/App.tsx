@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useEagerConnect from 'hooks/useEagerConnect'
 import { ResetCSS, ChevronUpIcon, ApeSwapTheme } from '@apeswapfinance/uikit'
@@ -152,10 +152,10 @@ const App: React.FC = () => {
               </Route>
               <Route path="/swap" component={Swap} />
               <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
-              <Route path="/vaults">
-                <Vaults />
-              </Route>
               {/* Redirects */}
+              <Route path="/vaults">
+                <Redirect to="/" />
+              </Route>
               <Route path="/treasury-bills">
                 <Redirect to="/" />
               </Route>
