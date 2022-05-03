@@ -4,21 +4,23 @@ on:
     branches:
       - test-main
 jobs:
-  build:
+   bump_version:
+    name: Bump Version
     runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.github_tag_action.outputs.new_tag }}
+      changelog: ${{ steps.github_tag_action.outputs.changelog }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Bump version and push tag
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.0
+        id: github_tag_action
+        uses: mathieudutour/github-tag-action@331898d5052eedac9b15fec867b5ba66ebf9b692
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          body: ${{ steps.tag_version.outputs.changelog }}
+          release_branches: .*
+          default_bump: false
 
   # create_release:
   #   name: Create Release
