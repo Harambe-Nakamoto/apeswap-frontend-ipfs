@@ -42,6 +42,8 @@ jobs:
 
       - name: Build the IPFS bundle
         run: yarn build
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   # create_release:
   #   name: Create Release
