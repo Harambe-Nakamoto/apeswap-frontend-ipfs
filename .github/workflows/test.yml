@@ -7,9 +7,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install modules
         run: yarn
-        env: 
+        env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Run Jest tests
         run: yarn test
-        env: 
+        env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
