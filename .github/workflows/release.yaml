@@ -79,3 +79,4 @@ jobs:
             - https://crustwebsites.net/ipfs/${{ steps.upload.outputs.hash }}/
 
             ${{ needs.bump_version.outputs.changelog }}
+ 
