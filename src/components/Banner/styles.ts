@@ -18,7 +18,7 @@ export const styles: Record<string, ThemeUIStyleObject> = {
   },
   // Style for the banner text
   titleText: {
-    fontWeight: 700,
+    fontWeight: 700, 
     lineHeight: '4.5vw',
     fontSize: '5vw',
     '@media screen and (min-width: 1130px)': {
