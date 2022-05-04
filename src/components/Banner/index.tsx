@@ -8,13 +8,14 @@ import { BannerTypes, ColorProps } from './types'
 
 const Banner: React.FC<{
   banner: BannerTypes
+  link: string
   title?: string
   children?: React.FC
   listViewBreak?: boolean
   margin?: string
   titleColor?: ColorProps
   maxWidth?: number
-}> = ({ banner, children, title, listViewBreak, margin, titleColor, maxWidth = 1200 }) => {
+}> = ({ banner, children, title, listViewBreak, margin, titleColor, link, maxWidth = 1200 }) => {
   const { isDark } = useTheme()
   const loaded = useProgressiveImage(`images/new-banners/${banner}-${isDark ? 'night' : 'day'}.svg`)
 
@@ -41,10 +42,11 @@ const Banner: React.FC<{
         </Text>
         <Link
           sx={{ ...styles.learnText, color: titleColor || 'text', ':hover': { textDecoration: 'none' } }}
-          href="/spinner"
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <span style={{ textDecoration: 'underline' }}>Learn More</span>{' '}
-          <LearnMoreArrow color={titleColor || 'text'} />
+          Learn More <LearnMoreArrow color={titleColor || 'text'} />
         </Link>
       </Flex>
       {children}
