@@ -20,7 +20,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           release_branches: .*
-          default_bump: true
+          default_bump: false
 
   create_release:
     name: Create Release
@@ -68,8 +68,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ needs.bump_version.outputs.new_tag }}
-          release_name: Release ${{ needs.bump_version.outputs.new_tag }}
+          tag_name: ${{ steps.upload.outputs.hash }}
+          release_name: Release ${{ steps.upload.outputs.hash }}
           body: |
             IPFS hash of the deployment: `${{ steps.upload.outputs.hash }}`
 
